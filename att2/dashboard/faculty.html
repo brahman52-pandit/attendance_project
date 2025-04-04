@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Dashboard - CAMS</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/faculty.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="menu-toggle">
+        <i class="fas fa-bars"></i>
+    </div>
+    <div class="overlay"></div>
+    <div class="faculty-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="logo">Faculty Panel</div>
+            <div class="faculty-profile">
+                <img src="../images/faculty-avatar.png" alt="Faculty" class="profile-img">
+                <h3 class="faculty-name">Dr. John Smith</h3>
+                <p class="faculty-id">ID: FAC001</p>
+                <p class="faculty-dept">Computer Science</p>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#dashboard" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="#attendance"><i class="fas fa-clipboard-list"></i> Mark Attendance</a></li>
+                <li><a href="#reports"><i class="fas fa-chart-bar"></i> Reports</a></li>
+                <li><a href="../index.html" class="logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="header">
+                <h1>Mark Attendance</h1>
+                <div class="date-info">
+                    <span>Date: <span id="currentDate"></span></span>
+                </div>
+            </div>
+
+            <!-- Attendance Form -->
+            <div class="attendance-section">
+                <div class="class-info">
+                    <select id="classSelect">
+                        <option value="CSE-3A">CSE 3rd Year (A)</option>
+                        <option value="CSE-3B">CSE 3rd Year (B)</option>
+                    </select>
+                    <select id="subjectSelect">
+                        <option value="DBMS">Database Management</option>
+                        <option value="OS">Operating Systems</option>
+                    </select>
+                    <button type="button" onclick="viewSavedAttendance()" class="view-btn">
+                        <i class="fas fa-history"></i> View Saved Attendance
+                    </button>
+                </div>
+
+                <form id="attendanceForm">
+                    <table class="attendance-table">
+                        <thead>
+                            <tr>
+                                <th>Roll No</th>
+                                <th>Student Name</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="studentList">
+                            <!-- Student list will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                    <button type="submit" class="submit-btn">Submit Attendance</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="../js/faculty.js"></script>
+</body>
+</html>

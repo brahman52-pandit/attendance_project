@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - CAMS</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="menu-toggle">
+        <i class="fas fa-bars"></i>
+    </div>
+    <div class="overlay"></div>
+    <div class="admin-container">
+        <!-- Updated Sidebar matching faculty style -->
+        <div class="sidebar">
+            <div class="logo">Admin Panel</div>
+            <div class="admin-profile">
+                <img src="../images/admin-avatar.png" alt="Admin" class="profile-img">
+                <h3 class="admin-name">Admin User</h3>
+                <p class="admin-id">ID: ADMIN001</p>
+                <p class="admin-role">System Administrator</p>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#dashboard" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="#students-list"><i class="fas fa-user-graduate"></i> Students</a></li>
+                <li><a href="#faculty"><i class="fas fa-chalkboard-teacher"></i> Faculty</a></li>
+                <li><a href="#attendance"><i class="fas fa-calendar-check"></i> Attendance</a></li>
+                <li><a href="#reports"><i class="fas fa-chart-bar"></i> Reports</a></li>
+                <li><a href="../index.html" class="logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </div>
+
+        <!-- Main Content (unchanged from original) -->
+        <div class="main-content">
+            <div class="header">
+                <h1>Admin Dashboard</h1>
+                <div class="user-info">
+                    <span>Welcome, Admin</span>
+                    <img src="../images/admin-avatar.png" alt="Admin profile picture" class="avatar">
+                </div>
+            </div>
+
+            <!-- Dashboard Stats -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <i class="fas fa-user-graduate"></i>
+                    <h3>Total Students</h3>
+                    <p>250</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <h3>Total Faculty</h3>
+                    <p>25</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-clock"></i>
+                    <h3>Today's Attendance</h3>
+                    <p>85%</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-calendar-week"></i>
+                    <h3>Active Classes</h3>
+                    <p>12</p>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="quick-actions">
+                <h2>Quick Actions</h2>
+                <div class="action-buttons">
+                    <button onclick="showAddStudent()"><i class="fas fa-plus"></i> Add Student</button>
+                    <button onclick="showAddFaculty()"><i class="fas fa-plus"></i> Add Faculty</button>
+                    <button onclick="generateReport()"><i class="fas fa-file-alt"></i> Generate Report</button>
+                </div>
+            </div>
+
+            <!-- Attendance Reports Section -->
+            <div class="attendance-reports">
+                <h2>Attendance Reports</h2>
+                <div class="report-filters">
+                    <select id="filterClass">
+                        <option value="">All Classes</option>
+                        <option value="CSE-3A">CSE 3rd Year (A)</option>
+                        <option value="CSE-3B">CSE 3rd Year (B)</option>
+                    </select>
+                    <select id="filterDate">
+                        <option value="">All Dates</option>
+                    </select>
+                    <button onclick="filterAttendanceReports()">Filter</button>
+                </div>
+                <div id="attendanceReportContent" class="report-content">
+                    <!-- Reports will be populated here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Add Faculty Modal -->
+        <div id="addFacultyModal" class="modal">
+            <div class="modal-content">
+                <span class="close" aria-label="Close modal">&times;</span>
+                <h2>Add New Faculty</h2>
+                <form id="addFacultyForm">
+                    <input type="text" id="facultyName" placeholder="Faculty Name" required>
+                    <input type="text" id="facultyId" placeholder="Faculty ID" required>
+                    <input type="email" id="facultyEmail" placeholder="Email" required>
+                    <select id="facultyDepartment" required>
+                        <option value="">Select Department</option>
+                        <option value="CSE">Computer Science</option>
+                        <option value="ECE">Electronics</option>
+                        <option value="ME">Mechanical</option>
+                    </select>
+                    <button type="submit">Add Faculty</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Add Student Modal -->
+        <div id="addStudentModal" class="modal">
+            <div class="modal-content">
+                <span class="close-student" aria-label="Close modal">&times;</span>
+                <h2>Add New Student</h2>
+                <form id="addStudentForm">
+                    <input type="text" id="studentName" placeholder="Student Name" required>
+                    <input type="text" id="studentId" placeholder="Student ID" required>
+                    <input type="email" id="studentEmail" placeholder="Email" required>
+                    <select id="studentDepartment" required>
+                        <option value="">Select Department</option>
+                        <option value="CSE">Computer Science</option>
+                        <option value="ECE">Electronics</option>
+                        <option value="ME">Mechanical</option>
+                    </select>
+                    <select id="studentSemester" required>
+                        <option value="">Select Semester</option>
+                        <option value="1">1st Semester</option>
+                        <option value="2">2nd Semester</option>
+                        <option value="3">3rd Semester</option>
+                        <option value="4">4th Semester</option>
+                        <option value="5">5th Semester</option>
+                        <option value="6">6th Semester</option>
+                        <option value="7">7th Semester</option>
+                        <option value="8">8th Semester</option>
+                    </select>
+                    <button type="submit">Add Student</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="../js/admin.js"></script>
+</body>
+</html>
